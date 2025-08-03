@@ -1,30 +1,32 @@
-# SimpleMessenger
+# 💬 SimpleMessenger
 
-A simple messenger backend written in **Python**, with **web-based mobile and desktop clients**. It provides core messaging functionality including registration, login, contact search, chatting, and basic profile settings.
+**SimpleMessenger** is a **very basic messenger** built with **Python (Flask + WebSocket)** and a simple **web-based frontend** for both desktop and mobile.  
+It was made just **for fun**, as a lightweight foundation for learning, experiments, or future projects.  
+No advanced features — just the essentials.
 
 ---
 
 ## ✨ Features
 
 - 🔐 **User Authentication**  
-  Simple registration and login system using username and password.
+  Basic registration and login with username and password.
 
-- 👥 **Contacts**  
-  Search and view contacts by username.
+- 💬 **Simple Chat System**  
+  Exchange messages between users in a minimal chat interface.
 
-- 💬 **Chat System**  
-  Send and receive messages in real time
+- 👥 **Contact Search**  
+  Look up other users by their username.
 
-- 🧑‍💼 **Profile Management**  
-  Edit basic user profile info like your tag (only)
+- 🧑 **Profile Tag Editing**  
+  Change your user tag (display name or short status).
 
 - 📱 **Responsive Web Interface**  
-  Frontend works on both **mobile** and **desktop** 
+  Web client works on both desktop and mobile browsers.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend:** Python (Flask and WebSocket)
-- **Frontend:** HTML, CSS, JS (without a framework)
-- **Database:** (simple logic, file like messenger.db)
+- **Backend:** Python, Flask, WebSocket  
+- **Frontend:** HTML, CSS, JavaScript (no framework)  
+- **Database:** SQLite (stored in `messenger.db`)
