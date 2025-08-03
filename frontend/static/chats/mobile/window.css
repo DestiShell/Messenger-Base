@@ -1,0 +1,176 @@
+/* Messenger Container - Mobile */
+.messenger-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: none;
+    background: white;
+    border-radius: 0;
+    margin: 0;
+    max-width: none;
+    position: relative;
+}
+
+/* Исправленный sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    height: 100%;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-right: none;
+    overflow-y: auto;
+}
+
+.sidebar.visible {
+    transform: translateX(0);
+}
+
+/* Исправленный overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Исправленные настройки */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1001; /* Выше чем sidebar */
+}
+
+.settings-panel.open {
+    transform: translateX(0);
+}
+
+.user-info {
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.contacts {
+    padding: 0 12px;
+}
+
+.contact {
+    padding: 12px;
+}
+
+/* Chat Area - Mobile */
+.chat-area {
+    width: 100%;
+    height: 100%;
+}
+
+.chat-header {
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+}
+
+.messages {
+    padding: 16px;
+}
+
+.message {
+    max-width: 85%;
+    padding: 12px 16px;
+    font-size: 14px;
+}
+
+/* Message Input - Mobile */
+#message-input {
+    padding: 8px 12px;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+#message-text {
+    padding: 12px 50px 12px 12px;
+    font-size: 14px;
+}
+
+#send-btn {
+    right: 18px;
+    width: 36px;
+    height: 36px;
+}
+
+.menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    margin-right: 12px;
+    color: #333;
+}
+/* Улучшаем отображение контента */
+.user-info, .contacts {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+/* Фикс для iPhone X и подобных */
+@supports(padding: max(0px)) {
+    .sidebar, .settings-panel {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+}
+
+/* Плавная анимация */
+.sidebar, .settings-panel, .sidebar-overlay {
+    will-change: transform, opacity;
+}
+@media (min-width: 769px) {
+    .sidebar {
+        position: relative;
+        transform: none !important;
+        width: 320px !important;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    .settings-panel {
+        width: 300px;
+        left: -300px;
+    }
+
+    .settings-panel.open {
+        transform: translateX(300px);
+    }
+}
+/* Гарантируем, что ничего не обрезается */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Фикс для безопасной зоны на iOS */
+.settings-panel {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}

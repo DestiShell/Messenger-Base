@@ -1,0 +1,57 @@
+/* Настройки для мобильной версии */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    height: 100%;
+    background: var(--dark-color);
+    color: white;
+    z-index: 1002; /* Выше чем sidebar и overlay */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    will-change: transform;
+}
+
+.settings-panel.open {
+    transform: translateX(0);
+}
+
+.settings-header {
+    padding: 16px;
+}
+
+.settings-content {
+    padding: 16px;
+}
+
+.settings-section h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.user-details {
+    font-size: 13px;
+}
+@media (min-width: 769px) {
+    .sidebar {
+        position: relative;
+        transform: none !important;
+        width: 320px !important;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    .settings-panel {
+        width: 300px;
+        left: -300px;
+    }
+
+    .settings-panel.open {
+        transform: translateX(300px);
+    }
+}

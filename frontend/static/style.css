@@ -1,0 +1,1006 @@
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --dark-color: #2d3436;
+    --light-color: #f5f6fa;
+    --success-color: #00b894;
+    --info-color: #0984e3;
+    --warning-color: #fdcb6e;
+    --danger-color: #d63031;
+    --text-color: #2d3436;
+    --text-light: #636e72;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Auth Form */
+.auth-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.auth-form h1 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.auth-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+    outline: none;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.auth-form button:hover {
+    background-color: #5649d1;
+    transform: translateY(-2px);
+}
+
+.auth-form a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+/* Messenger Container */
+.messenger-container {
+    display: flex;
+    height: 90vh;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    background: var(--dark-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.user-info h3 span {
+    color: #b2bec3;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+.user-info a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.contacts {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+
+.contacts h2 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b2bec3;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#add-contact-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+#add-contact-btn:hover {
+    background-color: #5649d1;
+}
+
+.contact-list {
+    margin-top: 10px;
+}
+
+.contact {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.contact:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contact.active {
+    background: var(--primary-color);
+}
+
+.contact-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.contact-last-message {
+    font-size: 0.8em;
+    color: #b2bec3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.contact-time {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    font-size: 0.7em;
+    color: #b2bec3;
+}
+
+.contact-unread {
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    background: var(--success-color);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+}
+
+.online-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: #b2bec3;
+}
+
+.online-status.online {
+    background: var(--success-color);
+}
+
+/* Chat Area */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--light-color);
+}
+
+.chat-header {
+    padding: 15px 20px;
+    background: white;
+    color: var(--text-color);
+    border-bottom: 1px solid #dfe6e9;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header-info {
+    flex-grow: 1;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.chat-header p {
+    margin: 3px 0 0;
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+.chat-header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.chat-header-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: var(--transition);
+}
+
+.chat-header-btn:hover {
+    color: var(--primary-color);
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: url('https://transparenttextures.com/patterns/cubes.png') repeat;
+    background-color: #f0f2f5;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    max-width: 70%;
+    word-wrap: break-word;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.sent {
+    margin-left: auto;
+    background: var(--primary-color);
+    color: white;
+    border-bottom-right-radius: 0;
+}
+
+.message.received {
+    margin-right: auto;
+    background: white;
+    border-bottom-left-radius: 0;
+}
+
+.message strong {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.message .timestamp {
+    font-size: 0.7em;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: right;
+    margin-top: 5px;
+    display: block;
+}
+
+.message.received .timestamp {
+    color: var(--text-light);
+}
+
+.message .read-status {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 0.7em;
+}
+
+.message-input-container {
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #dfe6e9;
+    display: flex;
+    gap: 10px;
+}
+
+.message-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #dfe6e9;
+    border-radius: 24px;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.message-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+    outline: none;
+}
+
+.send-button {
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.send-button:hover {
+    background: #5649d1;
+    transform: scale(1.05);
+}
+
+.send-button i {
+    font-size: 18px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-header {
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--text-light);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close:hover {
+    color: var(--danger-color);
+    transform: rotate(90deg);
+}
+
+/* Search */
+.search-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+#search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+    outline: none;
+}
+
+.search-results {
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    margin-top: 5px;
+    display: none;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.user-result {
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f1f1;
+    transition: var(--transition);
+}
+
+.user-result:hover {
+    background-color: #f8f9fa;
+}
+
+.user-info-name {
+    font-weight: 500;
+}
+
+.add-user-btn {
+    padding: 6px 12px;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: var(--transition);
+}
+
+.add-user-btn:hover {
+    background-color: #00a884;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.5s forwards;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification.success {
+    background-color: var(--success-color);
+}
+
+.notification.error {
+    background-color: var(--danger-color);
+}
+
+.notification i {
+    font-size: 20px;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .messenger-container {
+        flex-direction: column;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 40vh;
+    }
+
+    .chat-area {
+        height: 60vh;
+    }
+}
+
+/* Улучшенное поле ввода и кнопка отправки */
+.message-input-container {
+    padding: 12px 20px;
+    background: white;
+    border-top: 1px solid #e0e3e6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.message-input-wrapper {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.message-input {
+    width: 100%;
+    padding: 12px 50px 12px 15px;
+    border: 1px solid #e0e3e6;
+    border-radius: 24px;
+    font-size: 14px;
+    transition: var(--transition);
+    background: #f8f9fa;
+    resize: none;
+    min-height: 20px;
+    max-height: 120px;
+    line-height: 1.4;
+}
+
+.message-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+    outline: none;
+    background: white;
+}
+
+.attachment-btn {
+    position: absolute;
+    right: 50px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: var(--transition);
+    padding: 5px;
+}
+
+.attachment-btn:hover {
+    color: var(--primary-color);
+}
+
+.send-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.send-button:hover {
+    background: #5649d1;
+    transform: scale(1.05);
+}
+
+.send-button:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.send-button i {
+    font-size: 18px;
+}
+
+/* Кнопка выхода (LOGOUT) */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(214, 48, 49, 0.1);
+    color: var(--danger-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+    margin-top: auto;
+    margin-bottom: 20px;
+    width: calc(100% - 30px);
+    margin-left: 15px;
+}
+
+.logout-btn:hover {
+    background: rgba(214, 48, 49, 0.2);
+}
+
+.logout-btn i {
+    font-size: 16px;
+}
+
+/* Альтернативное расположение кнопки выхода в шапке */
+.chat-header .logout-btn {
+    margin: 0;
+    width: auto;
+    padding: 6px 12px;
+    background: none;
+    color: var(--danger-color);
+    border: 1px solid rgba(214, 48, 49, 0.3);
+}
+
+.chat-header .logout-btn:hover {
+    background: rgba(214, 48, 49, 0.1);
+}
+
+/* Иконки (можно использовать Font Awesome или другой иконочный шрифт) */
+.icon {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.icon-paperclip::before {
+    content: "📎";
+}
+
+.icon-send::before {
+    content: "✉️";
+}
+
+.icon-logout::before {
+    content: "🚪";
+}
+
+/* Основные стили для контейнера чата */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7fa;
+    position: relative;
+}
+
+.chat-header {
+    padding: 16px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #e6e9ed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    z-index: 10;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d3436;
+    display: flex;
+    align-items: center;
+}
+
+#chat-with {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Стили для области сообщений */
+.messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: url('https://transparenttextures.com/patterns/concrete-wall.png');
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Стили для контейнера поля ввода */
+#message-input {
+    display: flex !important;
+    padding: 8px 16px;
+    background: #ffffff;
+    border-top: 1px solid #e6e9ed;
+    align-items: center;
+    gap: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%; /* Чтобы не выходило за границы */
+}
+
+/* Поле для ввода текста */
+#message-text {
+    flex-grow: 1;
+    padding: 12px 52px 12px 16px; /* Увеличиваем правый отступ под кнопку */
+    border: 1px solid #dfe6e9;
+    border-radius: 24px;
+    font-size: 14px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    min-height: 20px;
+    max-height: 120px;
+    resize: none;
+    width: calc(100% - 8px); /* Чтобы не вылезало за границы */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+#message-text:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+    outline: none;
+    background: #ffffff;
+}
+
+/* Кнопка отправки (теперь ближе к правому краю поля) */
+#send-btn {
+    position: absolute;
+    right: 24px; /* Сдвигаем левее (было 28px) */
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #6c5ce7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#send-btn:hover {
+    background: #5649d1;
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#send-btn:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Иконка внутри кнопки (если используется) */
+#send-btn svg, #send-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Стили для сайдбара */
+.sidebar {
+    width: 300px;
+    background: #2d3436;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+.user-info h3 span {
+    color: #b2bec3;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+.user-info a {
+    color: #fd79a8;
+    text-decoration: none;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.user-info a:hover {
+    color: #ff9ff3;
+    text-decoration: underline;
+}
+
+/* Кнопка добавления контакта */
+#add-contact-btn {
+    width: calc(100% - 30px);
+    margin: 0 15px 15px;
+    padding: 10px;
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#add-contact-btn:hover {
+    background-color: #5649d1;
+}
+
+/* Стили для списка контактов */
+.contacts {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+
+.contacts h2 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b2bec3;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Стили для отдельного контакта */
+.contact {
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.contact:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contact.active {
+    background: #6c5ce7;
+}
+
+.online-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: #b2bec3;
+}
+
+.online-status.online {
+    background: #00b894;
+}
+
+.unread-count {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    background: #00b894;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.last-message {
+    font-size: 0.8em;
+    color: #b2bec3;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+}

@@ -1,0 +1,49 @@
+/* Кнопки для мобильной версии */
+#add-contact-btn {
+    width: calc(100% - 24px);
+    margin: 0 12px 12px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+#settings-btn {
+    width: calc(100% - 24px);
+    margin: 0 12px 12px;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.settings-button {
+    padding: 10px;
+    font-size: 13px;
+}
+
+#save-tag-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.add-user-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+@media (min-width: 769px) {
+    .sidebar {
+        position: relative;
+        transform: none !important;
+        width: 320px !important;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    .settings-panel {
+        width: 300px;
+        left: -300px;
+    }
+
+    .settings-panel.open {
+        transform: translateX(300px);
+    }
+}

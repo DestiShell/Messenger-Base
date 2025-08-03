@@ -1,0 +1,1084 @@
+/*
+
+OLD VERSION OF CHAT CSS (NEW: chats/desktop)
+
+*/
+
+/*
+!* Основные Inter с локальными путями *!
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7_7.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7_14.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7_21.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7_28.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+!* Подключение для кириллицы *!
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc_2.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc_9.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc_16.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc_23.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+!* Общие стили с подключенным шрифтом *!
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+:root {
+    !* Цветовая гамма *!
+    --primary-color: #6bbd4a;
+    --primary-dark: #4e9a34;   !* На 20% темнее основного *!
+    --primary-light: #8fd46a;  !* На 20% светлее основного *!
+    --primary-ultralight: #e8f5e9; !* Очень светлый оттенок *!
+    --dark-color: #1e272e;
+    --notification-bg: #2d3436;
+
+    !* Цвета уведомлений *!
+    --notification-success: #27ae60;
+    --notification-info: #3498db;
+    --notification-warning: #f39c12;
+    --notification-error: #e74c3c;
+
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --transition: all 0.25s ease;
+}
+
+!* Компактные уведомления в правом верхнем углу *!
+.notifications-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px;
+    width: auto;
+}
+
+.notification {
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #ecf0f1;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: var(--shadow);
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.3s forwards, fadeOut 0.3s forwards 3s;
+    background: var(--notification-bg);
+    border-left: 3px solid;
+    max-width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+.notification.success {
+    border-left-color: var(--notification-success);
+}
+
+.notification.info {
+    border-left-color: var(--notification-info);
+}
+
+.notification.warning {
+    border-left-color: var(--notification-warning);
+    color: #2d3436;
+    background: #fef9e7;
+}
+
+.notification.error {
+    border-left-color: var(--notification-error);
+}
+
+.notification-icon {
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notification-message {
+    font-size: 13px;
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0 0 0 8px;
+    margin: -2px -4px -2px 0;
+    transition: var(--transition);
+    font-size: 16px;
+    line-height: 1;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+!* Адаптация для маленьких экранов *!
+@media (max-width: 480px) {
+    .notifications-container {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+    }
+
+    .notification {
+        width: calc(100% - 20px);
+    }
+}
+
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    box-sizing: border-box;
+}
+
+!* Messenger Container *!
+.messenger-container {
+    display: flex;
+    height: 90vh;
+    max-height: 1000px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+!* Sidebar *!
+.sidebar {
+    width: 320px;
+    background: var(--dark-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.user-info h3 span {
+    color: #b2bec3;
+    font-size: 0.85em;
+    display: block;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.user-info a {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-top: 12px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.user-info a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.contacts {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 16px;
+}
+
+.contacts h2 {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #b2bec3;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+
+#add-contact-btn {
+    width: calc(100% - 32px);
+    margin: 0 16px 16px;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(99, 202, 37, 0.3);
+}
+
+#add-contact-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+#settings-btn {
+    position: relative;
+    top: 20px;
+    width: calc(100% - 32px); !* Та же ширина *!
+    margin: 0 16px 16px;      !* Такие же отступы *!
+    padding: 12px;            !* Такой же внутренний отступ *!
+    background-color: #6c757d; !* Серый цвет *!
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3); !* Серый shadow *!
+}
+
+#settings-btn:hover {
+    background-color: #5a6268; !* Темно-серый при наведении *!
+    transform: translateY(-1px);
+}
+
+.contact-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact {
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.contact:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(2px);
+}
+
+.contact.active {
+    background: var(--primary-color);
+}
+
+.contact-name {
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.1px;
+    margin-bottom: 2px;
+}
+
+.online-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: #b2bec3;
+    box-shadow: 0 0 0 2px rgba(178, 190, 195, 0.2);
+}
+
+.online-status.online {
+    background: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(99, 202, 37, 0.3);
+}
+
+.unread-count {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+    font-weight: 700;
+}
+
+.last-message {
+    font-size: 0.8em;
+    color: #b2bec3;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+    font-weight: 500;
+}
+
+!* Chat Area *!
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7fa;
+    position: relative;
+}
+
+.chat-header {
+    padding: 18px 24px;
+    background: white;
+    border-bottom: 1px solid #e6e9ed;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    z-index: 10;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: -0.2px;
+}
+
+#chat-with {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background: url('https://transparenttextures.com/patterns/concrete-wall.png');
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message {
+    margin-bottom: 8px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    max-width: 75%;
+    word-wrap: break-word;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.sent {
+    margin-left: auto;
+    background: var(--primary-color);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message.received {
+    margin-right: auto;
+    background: white;
+    border-bottom-left-radius: 4px;
+    color: var(--text-color);
+    border: 1px solid #e0e3e7;
+}
+
+.message strong {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 0.9em;
+    letter-spacing: -0.1px;
+}
+
+.message p {
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+}
+
+.message .timestamp {
+    font-size: 0.7em;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: right;
+    margin-top: 6px;
+    display: block;
+    font-weight: 500;
+}
+
+.message.received .timestamp {
+    color: var(--text-light);
+}
+
+!* Message Input Area *!
+#message-input {
+    display: flex !important;
+    padding: 12px 20px;
+    background: white;
+    border-top: 1px solid #e6e9ed;
+    align-items: center;
+    gap: 0;
+    transition: var(--transition);
+    position: relative;
+}
+
+#message-text {
+    flex-grow: 1;
+    padding: 14px 60px 14px 18px;
+    border: 1px solid #dfe6e9;
+    border-radius: 24px;
+    font-size: 15px;
+    background: #f8f9fa;
+    transition: var(--transition);
+    min-height: 20px;
+    max-height: 120px;
+    resize: none;
+    width: 100%;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+#message-text:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 202, 37, 0.2);
+    outline: none;
+    background: white;
+}
+
+#send-btn {
+    position: absolute;
+    right: 28px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(99, 202, 37, 0.3);
+}
+
+#send-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+#send-btn:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+!* Modal *!
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 28px;
+    border-radius: 16px;
+    width: 420px;
+    max-width: 90%;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.modal-header h2 {
+    color: #333; !* Темно-серый цвет *!
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: var(--text-light);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close:hover {
+    color: var(--text-color);
+    transform: rotate(90deg);
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dfe6e9;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+#search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 202, 37, 0.2);
+    outline: none;
+}
+
+.search-results {
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #dfe6e9;
+    border-radius: 12px;
+    margin-top: 8px;
+    display: none;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.user-result {
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f1f1;
+    transition: var(--transition);
+}
+
+.user-result:hover {
+    background-color: #f8f9fa;
+}
+
+.user-info-name {
+    font-weight: 600;
+}
+
+.add-user-btn {
+    padding: 8px 14px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.add-user-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+!* Responsive *!
+@media (max-width: 768px) {
+    .messenger-container {
+        flex-direction: column;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 40vh;
+    }
+
+    .chat-area {
+        height: 60vh;
+    }
+}
+
+!* Дополнительные улучшения для красоты *!
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+!* Анимация для кнопок *!
+button {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+!* Плавное появление элементов *!
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+#send-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+#message-text:disabled {
+    background-color: #f5f5f5;
+}
+!* Стили для модального окна изменения тега *!
+.tag-change-container {
+    padding: 20px 0;
+}
+
+#new-tag-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#save-tag-btn {
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+#save-tag-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+#change-tag-btn {
+    display: inline-block;
+    margin-top: 8px;
+    color: #b2bec3;
+    text-decoration: none;
+    font-size: 0.85em;
+    transition: var(--transition);
+}
+
+#change-tag-btn:hover {
+    color: white;
+    text-decoration: underline;
+}
+!* Добавьте в ваш CSS *!
+.modal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-content {
+    transition: transform 0.3s ease;
+}
+
+.modal.closing {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal.closing .modal-content {
+    transform: translateY(-20px);
+}
+
+.close {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.close:hover {
+    color: #ff4444;
+    transform: scale(1.1);
+}
+
+.close:active {
+    transform: scale(0.9);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff; !* Белый фон для header *!
+    color: #333; !* Цвет текста по умолчанию *!
+}
+.modal-body {
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+#new-tag-input {
+    width: 100%;
+    padding: 12px 35px 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#new-tag-input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.clear-input {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-75%);
+    cursor: pointer;
+    color: #999;
+    font-size: 20px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.clear-input:hover {
+    color: #ff4444;
+}
+
+.hint {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.primary-btn:hover {
+    background-color: #3a7bc8;
+}
+
+.primary-btn:active {
+    background-color: #2d6bb0;
+}
+!* Стили для кнопки настроек *!
+.settings-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.settings-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+!* Стили для панели настроек *!
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background: var(--dark-color);
+    color: white;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.settings-panel.open {
+    transform: translateX(320px);
+}
+
+.settings-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-settings {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.settings-content {
+    padding: 20px;
+}
+
+.settings-section {
+    margin-bottom: 25px;
+}
+
+.settings-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    color: var(--primary-light);
+}
+
+.user-details {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.user-details p {
+    margin: 5px 0;
+}
+
+.settings-button {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.settings-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.settings-button.logout {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.settings-button.logout:hover {
+    background: rgba(231, 76, 60, 0.3);
+}
+
+!* Затемнение основного контента *!
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+*/

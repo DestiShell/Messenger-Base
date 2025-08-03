@@ -1,0 +1,118 @@
+/* Компактные уведомления в правом верхнем углу */
+.notifications-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px;
+    width: auto;
+}
+
+.notification {
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #ecf0f1;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: var(--shadow);
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 8px;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.3s forwards, fadeOut 0.3s forwards 3s;
+    background: var(--notification-bg);
+    border-left: 3px solid;
+    max-width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+.notification.success {
+    border-left-color: var(--notification-success);
+}
+
+.notification.info {
+    border-left-color: var(--notification-info);
+}
+
+.notification.warning {
+    border-left-color: var(--notification-warning);
+    color: #2d3436;
+    background: #fef9e7;
+}
+
+.notification.error {
+    border-left-color: var(--notification-error);
+}
+
+.notification-icon {
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notification-message {
+    font-size: 13px;
+    opacity: 0.9;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0 0 0 8px;
+    margin: -2px -4px -2px 0;
+    transition: var(--transition);
+    font-size: 16px;
+    line-height: 1;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 480px) {
+    .notifications-container {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+    }
+
+    .notification {
+        width: calc(100% - 20px);
+    }
+}

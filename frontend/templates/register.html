@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Анимированный фон -->
+<div class="background"></div>
+<div class="particles"></div>
+
+<div class="auth-container">
+    <div class="auth-card floating">
+        <div class="auth-header">
+            <h1>Create Account</h1>
+            <p>Join our community to get started</p>
+        </div>
+
+        <form method="POST" action="/register" class="auth-form">
+            <div class="form-group">
+                <div class="input-container">
+                    <input
+                        type="text"
+                        name="username"
+                        id="reg-username"
+                        placeholder=" "
+                        required
+                        autocomplete="username"
+                    >
+                    <label for="reg-username">Username</label>
+                    <div class="input-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-container">
+                    <input
+                        type="password"
+                        name="password"
+                        id="reg-password"
+                        placeholder=" "
+                        required
+                        autocomplete="new-password"
+                    >
+                    <label for="reg-password">Password</label>
+                    <div class="input-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn">Create Account</button>
+
+            <div class="auth-divider">or</div>
+
+            <div class="auth-footer">
+                Already have an account? <a href="/login">Sign in</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Создание частиц конфетти
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = window.innerWidth < 768 ? 50 : 100;
+
+    for(let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // Случайные параметры частиц
+        const size = Math.random() * 8 + 2;
+        const posX = Math.random() * window.innerWidth;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        const color = `hsl(${Math.random() * 60 + 180}, 80%, 70%)`;
+
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}px`;
+        particle.style.top = `${Math.random() * window.innerHeight}px`;
+        particle.style.background = color;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+
+        particlesContainer.appendChild(particle);
+    }
+
+    // Эффект волны для кнопки
+    const button = document.querySelector('.auth-btn');
+    button.addEventListener('click', function(e) {
+        const wave = document.createElement('span');
+        wave.className = 'wave';
+        this.appendChild(wave);
+
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        wave.style.width = wave.style.height = size + 'px';
+        wave.style.left = e.clientX - rect.left - size/2 + 'px';
+        wave.style.top = e.clientY - rect.top - size/2 + 'px';
+
+        setTimeout(() => wave.remove(), 600);
+    });
+
+    // Параллакс эффект для формы
+    const authContainer = document.querySelector('.auth-container');
+    if(authContainer) {
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth - 0.5;
+            const y = e.clientY / window.innerHeight - 0.5;
+            authContainer.style.transform = `
+                rotateY(${x * 10}deg)
+                rotateX(${-y * 10}deg)
+                translateZ(20px)
+            `;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            authContainer.style.transform = '';
+        });
+    }
+});
+</script>
+{% endblock %}

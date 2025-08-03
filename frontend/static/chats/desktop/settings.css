@@ -1,0 +1,132 @@
+#settings-btn {
+    position: relative;
+    top: 20px;
+    width: calc(100% - 32px);
+    margin: 0 16px 16px;
+    padding: 12px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+#settings-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Стили для панели настроек */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background: var(--dark-color);
+    color: white;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.settings-panel.open {
+    transform: translateX(320px);
+}
+
+.settings-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-settings {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.settings-content {
+    padding: 20px;
+}
+
+.settings-section {
+    margin-bottom: 25px;
+}
+
+.settings-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    color: var(--primary-light);
+}
+
+.user-details {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.user-details p {
+    margin: 5px 0;
+}
+
+/* Затемнение основного контента */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+/* Стили для выпадающего меню профиля */
+.profile-options {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    padding-left: 15px;
+    animation: fadeIn 0.3s ease;
+}
+
+.profile-options.show {
+    display: flex;
+}
+
+.profile-option-btn {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.profile-option-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="messenger-container">
+
+    <div class="sidebar-overlay"></div>
+
+    <div class="sidebar">
+
+<div class="user-info" data-user-id="{{ current_user.id }}">
+    <div class="user-name-tag">
+        <h3>{{ current_user.username }} <span>{{ current_user.tag }}</span></h3>
+    </div>
+    <button id="settings-btn" class="settings-btn">Settings</button>
+</div>
+
+
+<div class="settings-panel">
+    <div class="settings-header">
+        <h3>Settings</h3>
+        <button class="close-settings">&times;</button>
+    </div>
+    <div class="settings-content">
+        <div class="settings-section">
+            <h4>Profile</h4>
+            <div class="user-details">
+                <p><strong>Username:</strong> {{ current_user.username }}</p>
+                <p><strong>Tag:</strong> {{ current_user.tag }}</p>
+            </div>
+            <button id="change-tag-btn" class="settings-button">Change Tag</button>
+        </div>
+        <div class="settings-section">
+            <h4>Account</h4>
+            <button id="logout-btn" class="settings-button logout">Logout</button>
+        </div>
+    </div>
+</div>
+
+<div id="change-tag-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Change Your Tag</h2>
+            <span class="close" id="close-change-tag">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <label for="new-tag-input">Enter your new tag</label>
+                <div class="input-wrapper">
+                    <input type="text" id="new-tag-input" placeholder="@yourname" value="{{ current_user.tag }}">
+                    <span class="clear-input" id="clear-tag-input">×</span>
+                </div>
+                <div class="hint">Tag must start with @ and be 5-20 characters long</div>
+                <div id="tag-error" class="error-message"></div>
+            </div>
+            <button id="save-tag-btn" class="primary-btn">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+        <button id="add-contact-btn">Add Contact</button>
+
+        <div class="contacts">
+            <h2>Contacts</h2>
+<div class="contact-list">
+    {% for data in contacts_data %}
+    <div class="contact"
+         data-contact-id="{{ data.contact.contact.id }}"
+         data-contact-name="{{ data.contact.contact.username }}"
+         data-contact-tag="{{ data.contact.contact.tag }}">
+        <span class="online-status {% if data.contact.contact.last_seen and (now.timestamp() - data.contact.contact.last_seen.timestamp()) < 300 %}online{% else %}offline{% endif %}"></span>
+        <span class="contact-name">{{ data.contact.contact.username }}</span>
+        <span class="contact-tag">{{ data.contact.contact.tag }}</span>
+        {% if data.unread_count > 0 %}
+        <span class="unread-count">{{ data.unread_count }}</span>
+        {% endif %}
+        <div class="last-message">
+            {% if data.last_message %}
+                {% if data.last_message.sender_id == current_user.id %}
+                    You: {{ data.last_message.content|truncate(20) }}
+                {% else %}
+                    {{ data.last_message.content|truncate(20) }}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+        </div>
+    </div>
+
+    <div class="chat-area">
+        <div class="chat-header">
+            <button class="menu-toggle">☰</button>
+            <h2 id="chat-with">
+                {% if selected_contact %}
+                    {{ selected_contact.username }} {{ selected_contact.tag }}
+                {% else %}
+                    Select a contact
+                {% endif %}
+            </h2>
+        </div>
+
+        <div class="messages" id="messages">
+            {% if selected_contact and messages %}
+                {% for message in messages %}
+                <div class="message {% if message.sender_id == current_user.id %}sent{% else %}received{% endif %}" data-message-id="{{ message.id }}">
+                    <strong>{% if message.sender_id == current_user.id %}You{% else %}{{ selected_contact.username }}{% endif %}</strong>
+                    <p>{{ message.content }}</p>
+                    <span class="timestamp">{{ message.timestamp.strftime('%H:%M') }}</span>
+                    {% if message.sender_id == current_user.id %}
+                        <span class="read-status">{% if message.is_read %}✓✓{% else %}✓{% endif %}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="message-input" id="message-input" style="{% if not selected_contact %}display: none;{% endif %}">
+            <textarea id="message-text" placeholder="Type a message..." rows="1"></textarea>
+            <button id="send-btn">➤</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Contact Modal -->
+<div id="add-contact-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-add-contact">&times;</span>
+        <div class="modal-header">
+            <h2>Add New Contact</h2>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search by username or tag...">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle - только для мобильных
+    if (window.innerWidth <= 768) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.add('visible');
+            overlay.classList.add('visible');
+        });
+
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('visible');
+            overlay.classList.remove('visible');
+        });
+
+        // Закрываем меню при выборе контакта на мобильных
+        document.querySelectorAll('.contact').forEach(contact => {
+            contact.addEventListener('click', function() {
+                sidebar.classList.remove('visible');
+                overlay.classList.remove('visible');
+            });
+        });
+    } else {
+        // На ПК скрываем элементы мобильного меню
+        document.querySelector('.menu-toggle').style.display = 'none';
+        document.querySelector('.sidebar-overlay').style.display = 'none';
+    }
+
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/static/sw.js')
+            .then(registration => {
+                console.log('ServiceWorker registered');
+            });
+    }
+});
+</script>
+<script src="../static/script.js"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sekynda Messenger</title>
+
+    {% if request.path == '/login' or request.path == '/register' %}
+        <link rel="stylesheet" href="../static/auth.css">
+    {% else %}
+        <!-- CSS for desc. version -->
+        <link rel="stylesheet" href="../static/chats/desktop/fonts.css">
+        <link rel="stylesheet" href="../static/chats/desktop/window.css">
+        <link rel="stylesheet" href="../static/chats/desktop/buttons.css">
+        <link rel="stylesheet" href="../static/chats/desktop/notifications.css">
+        <link rel="stylesheet" href="../static/chats/desktop/modal.css">
+        <link rel="stylesheet" href="../static/chats/desktop/settings.css">
+        <!-- CSS for mobile version -->
+        <link rel="stylesheet" href="../static/chats/mobile/fonts.css" media="only screen and (max-width: 768px)">
+        <link rel="stylesheet" href="../static/chats/mobile/window.css" media="only screen and (max-width: 768px)">
+        <link rel="stylesheet" href="../static/chats/mobile/buttons.css" media="only screen and (max-width: 768px)">
+        <link rel="stylesheet" href="../static/chats/mobile/notifications.css" media="only screen and (max-width: 768px)">
+        <link rel="stylesheet" href="../static/chats/mobile/modal.css" media="only screen and (max-width: 768px)">
+        <link rel="stylesheet" href="../static/chats/mobile/settings.css" media="only screen and (max-width: 768px)">
+    {% endif %}
+</head>
+<body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+</html>
